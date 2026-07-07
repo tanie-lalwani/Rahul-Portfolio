@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-lora), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-courier), monospace;
+  
+  --color-paper: #f5f2eb;
+  --color-paper-dark: #121212;
+  --color-ink: #1c1a17;
+  --color-ink-light: #e2dfd5;
+  --color-burgundy: #8c1d1d;
+  --color-burgundy-light: #e65c5c;
+  --color-accent-blue: #1b2e3c;
+  --color-accent-blue-light: #7b9cb5;
+}
+
+html {
+  background-color: var(--color-paper);
+}
+
+.dark html {
+  background-color: var(--color-paper-dark);
+}
+
+body {
+  background-color: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.dark body {
+  color: var(--color-ink-light);
+}
+
+/* Custom Editorial Newspaper Utilities */
+
+.newspaper-grid {
+  background-image: 
+    linear-gradient(to right, rgba(28, 26, 23, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 26, 23, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dark .newspaper-grid {
+  background-image: 
+    linear-gradient(to right, rgba(226, 223, 213, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 223, 213, 0.03) 1px, transparent 1px);
+}
+
+/* Authentic Newspaper Borders */
+.border-double-thick {
+  border-style: double;
+  border-width: 4px;
+}
+
+.border-triple {
+  border-style: solid;
+  border-width: 1px;
+  position: relative;
+}
+.border-triple::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  border: 2px solid currentColor;
+  pointer-events: none;
+}
+
+/* Editorial Drop Caps */
+.drop-cap::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.85;
+  padding-right: 0.4rem;
+  padding-top: 0.2rem;
+  color: var(--color-burgundy);
+}
+
+.dark .drop-cap::first-letter {
+  color: var(--color-burgundy-light);
+}
+
+/* Half-tone image filter mapping */
+.halftone-effect {
+  filter: contrast(160%) grayscale(100%);
+  mix-blend-mode: multiply;
+  transition: all 0.5s ease-in-out;
+}
+
+.dark .halftone-effect {
+  filter: contrast(140%) grayscale(100%) invert(100%);
+  mix-blend-mode: screen;
+}
+
+.halftone-effect:hover {
+  filter: contrast(100%) grayscale(0%);
+  mix-blend-mode: normal;
+}
+
+.dark .halftone-effect:hover {
+  filter: contrast(100%) grayscale(0%) invert(0%);
+  mix-blend-mode: normal;
+}
+
+/* Vintage Paper Vignette overlay */
+.vignette-overlay {
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.08);
+}
+
+.dark .vignette-overlay {
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes blur-rush {
+  0% {
+    filter: blur(0px) contrast(100%);
+  }
+  50% {
+    filter: blur(28px) contrast(180%);
+  }
+  100% {
+    filter: blur(0px) contrast(100%);
+  }
+}
+
+.rush-animation {
+  animation: blur-rush 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Smooth Lens Motion Blur Transitions */
+.motion-blur-active {
+  filter: blur(3.2px) contrast(108%);
+  transition: filter 0.16s cubic-bezier(0.25, 1, 0.45, 1);
+}
+
+.motion-blur-inactive {
+  filter: blur(0px) contrast(100%);
+  transition: filter 0.36s cubic-bezier(0.25, 1, 0.45, 1);
+}
